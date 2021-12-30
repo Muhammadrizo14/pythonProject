@@ -1,0 +1,112 @@
+{% load static %}
+
+{% if request.user.is_authenticated %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Education</title>
+</head>
+<body>
+<h1><span><</span>A<span>></span> code education</h1>
+<table>
+    <tr class="fx">
+        <td><p>№</p></td>
+        <td><p>Комментария</p></td>
+        <td><p>Занята</p></td>
+        <td><p>Учитель</p></td>
+<!--        <td><p>Время</p></td>-->
+    </tr>
+    {%for item in room%}
+    <tr class="fds" style="background-color: red">
+        <td><p>{{item.title}}</p></td>
+        <td><p>{{item.content}}</p></td>
+        <td><p value="{{item.is_published}}">{{item.is_published}}<input class="active" hidden type="none" value="{{item.is_published}}"></p></td>
+        <td><p>{{item.teachers}}</p></td>
+<!--        <td><p>{{item.time}}</p></td>-->
+    </tr>
+    <script>
+
+
+
+let b = 'False'
+let c = 'True'
+
+let dir = document.querySelectorAll('.fds')
+let numbers = document.querySelector('.active').value
+
+
+
+
+
+
+
+//if(numbers == b){
+//    dir.style.backgroundColor = "Green"
+//}
+
+
+
+
+
+//const numbers = [1, 2, 3, 4, 5];
+//numbers.forEach(function(number) {
+//    console.log(number);
+//});
+//
+//
+//a.forEach(function(a) {
+//        //dir.style.backgroundColor = "Green"
+//        console.log(a)
+//});
+//
+//
+//if (a == b){
+//    a.forEach(function(a) {
+//            dir.style.backgroundColor = "Green"
+//    });
+//}
+
+
+
+</script>
+    {%endfor%}
+</table>
+<link rel="stylesheet" href="{% static 'js/main.js' %}">
+</body>
+</html>
+{% else %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Education</title>
+</head>
+<style>
+    body {
+        background-color: #333;
+        color:#fff;
+        text-align: center;
+    }
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    a {
+        color: #fff;
+    }
+
+
+
+</style>
+<body>
+<h1>You are don't authenticated <a href="/admin/">for authenticate</a> ❌</h1>
+</body>
+</html>
+
+
+{% endif %}
